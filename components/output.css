@@ -587,6 +587,10 @@ video {
   border-radius: 32px;
 }
 
+.rounded-\[24px\] {
+  border-radius: 24px;
+}
+
 .border-2 {
   border-width: 2px;
 }
@@ -614,6 +618,10 @@ video {
   padding: 2.5rem;
 }
 
+.p-8 {
+  padding: 2rem;
+}
+
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -622,6 +630,11 @@ video {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .pb-10 {
