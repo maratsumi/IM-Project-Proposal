@@ -529,16 +529,31 @@ video {
   z-index: 10;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
 .ml-\[200px\] {
   margin-left: 200px;
 }
 
+<<<<<<< HEAD
 .ml-11 {
   margin-left: 2.75rem;
 }
 
 .ml-60 {
   margin-left: 15rem;
+=======
+.mb-10 {
+  margin-bottom: 2.5rem;
+>>>>>>> a2236c223fdcc13e42155d5d90618694c6de1fee
 }
 
 .block {
@@ -565,6 +580,7 @@ video {
   width: 200px;
 }
 
+<<<<<<< HEAD
 .w-44 {
   width: 11rem;
 }
@@ -581,12 +597,25 @@ video {
   --tw-border-spacing-x: 0.5rem;
   --tw-border-spacing-y: 0.5rem;
   border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);
+=======
+.w-\[1520px\] {
+  width: 1520px;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.content-end {
+  align-content: flex-end;
+>>>>>>> a2236c223fdcc13e42155d5d90618694c6de1fee
 }
 
 .overflow-x-hidden {
   overflow-x: hidden;
 }
 
+<<<<<<< HEAD
 .border {
   border-width: 1px;
 }
@@ -594,6 +623,14 @@ video {
 .border-slate-400 {
   --tw-border-opacity: 1;
   border-color: rgb(148 163 184 / var(--tw-border-opacity));
+=======
+.rounded-\[32px\] {
+  border-radius: 32px;
+}
+
+.border-2 {
+  border-width: 2px;
+>>>>>>> a2236c223fdcc13e42155d5d90618694c6de1fee
 }
 
 .bg-slate-200 {
@@ -606,6 +643,11 @@ video {
   background-color: rgb(30 41 59 / var(--tw-bg-opacity));
 }
 
+.bg-blue-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
+}
+
 .p-5 {
   padding: 1.25rem;
 }
@@ -614,8 +656,26 @@ video {
   padding: 2.5rem;
 }
 
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 .pb-10 {
   padding-bottom: 2.5rem;
+}
+
+.pt-7 {
+  padding-top: 1.75rem;
+}
+
+.pb-7 {
+  padding-bottom: 1.75rem;
 }
 
 .text-center {
@@ -637,6 +697,16 @@ video {
   line-height: 2.5rem;
 }
 
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 .font-semibold {
   font-weight: 600;
 }
@@ -644,6 +714,16 @@ video {
 .text-slate-100 {
   --tw-text-opacity: 1;
   color: rgb(241 245 249 / var(--tw-text-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-slate-800 {
+  --tw-text-opacity: 1;
+  color: rgb(30 41 59 / var(--tw-text-opacity));
 }
 
 .shadow-md {
