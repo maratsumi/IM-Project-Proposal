@@ -1,5 +1,5 @@
 # When making changes to CSS/Tailwind, remember to build:
-### npm buildcss
+### npm run buildcss
 
 # To see your changes or run a test build, run the following:
-### npm start
+### npm run start
