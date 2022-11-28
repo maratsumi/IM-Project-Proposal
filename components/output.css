@@ -513,22 +513,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.flex {
-  display: flex;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.text-center {
-  text-align: center;
-}
-
 .text-9xl {
   font-size: 8rem;
   line-height: 1;
