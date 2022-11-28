@@ -8,6 +8,7 @@
     "postcss": "^8.4.19"
   },
   "scripts": {
-    "start": "live-server --open=./index.html"
+    "start": "live-server --open=./index.html",
+    "buildcss": "npx tailwindcss build -i index.css -o ./components/output.css"
   }
 }
