@@ -517,8 +517,11 @@ video {
   font-size: 8rem;
   line-height: 1;
 }
+<<<<<<< HEAD
 
 .text-pink-500 {
   --tw-text-opacity: 1;
   color: rgb(236 72 153 / var(--tw-text-opacity));
 }
+=======
+>>>>>>> b338adaaa48d9996abe073f4b70ec624b680ea20
