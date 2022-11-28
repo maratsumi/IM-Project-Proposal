@@ -543,8 +543,17 @@ video {
   margin-left: 200px;
 }
 
+<<<<<<< HEAD
+.ml-11 {
+  margin-left: 2.75rem;
+}
+
+.ml-60 {
+  margin-left: 15rem;
+=======
 .mb-10 {
   margin-bottom: 2.5rem;
+>>>>>>> a2236c223fdcc13e42155d5d90618694c6de1fee
 }
 
 .block {
@@ -553,6 +562,10 @@ video {
 
 .flex {
   display: flex;
+}
+
+.table {
+  display: table;
 }
 
 .h-full {
@@ -567,6 +580,24 @@ video {
   width: 200px;
 }
 
+<<<<<<< HEAD
+.w-44 {
+  width: 11rem;
+}
+
+.table-auto {
+  table-layout: auto;
+}
+
+.border-separate {
+  border-collapse: separate;
+}
+
+.border-spacing-2 {
+  --tw-border-spacing-x: 0.5rem;
+  --tw-border-spacing-y: 0.5rem;
+  border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);
+=======
 .w-\[1520px\] {
   width: 1520px;
 }
@@ -577,12 +608,22 @@ video {
 
 .content-end {
   align-content: flex-end;
+>>>>>>> a2236c223fdcc13e42155d5d90618694c6de1fee
 }
 
 .overflow-x-hidden {
   overflow-x: hidden;
 }
 
+<<<<<<< HEAD
+.border {
+  border-width: 1px;
+}
+
+.border-slate-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(148 163 184 / var(--tw-border-opacity));
+=======
 .rounded-\[32px\] {
   border-radius: 32px;
 }
@@ -593,6 +634,7 @@ video {
 
 .border-2 {
   border-width: 2px;
+>>>>>>> a2236c223fdcc13e42155d5d90618694c6de1fee
 }
 
 .bg-slate-200 {
