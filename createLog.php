@@ -1,11 +1,104 @@
+<?php
+  require_once "config.php";
+  $purchaseNumber = $distributorName = $itemName = $itemQuantity = $itemNumber = $recipientName = "";
+  $purchaseNumber_err = $distributorName_err = $itemName_err = $itemQuantity_err = $itemNumber_err = $recipientName_err = "";
+
+  date_default_timezone_get();
+  $dateOrdered = date('Y-m-d H:i:s', time());
+
+  if($SERVER["REQUEST METHOD"] == "POST"){
+    $input_purchaseNum = trim($_POST["purchaseNumber"]);
+    if(empty ($input_purchaseNum)){
+      $purchaseNumber_err = "Please enter Purchase Number";
+    } elseif(!ctype_digit($input_purchaseNum)){
+      $purchaseNumber_err = "Please enter a valid Purchase Number";
+    } else {
+      $purchaseNumber = $input_purchaseNum;
+    }
+
+    $input_distName = trim($_POST["distributorName"]);
+    if(empty ($input_distName)){
+      $distributorName_err = "Please enter Distributor Name";
+    } elseif(!filter_var($input_distName, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-Z\s]+$/")))){
+      $distributorName_err = "Please enter a valid name";
+    } else {
+      $distributorName = $input_distName;
+    }
+          
+    $input_itemName = trim($_POST["itemName"]);
+    if(empty ($input_itemName)){
+      $purchaseNumber_err = "Please enter Item Number";
+    } elseif(!filter_var($input_itemName, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-Z\s]+$/")))){
+      $itemName_err = "Please enter a valid Item Number";
+    } else {
+      $itemName = $input_itemName;
+    }
+          
+    $input_itemQuantity = trim($_POST["itemQuantity"]);
+    if(empty ($input_itemQuantity)){
+      $itemQuantity_err = "Please enter Item Quantity";
+    } elseif(!ctype_digit($input_itemQuantity)){
+      $itemQuantity_err = "Please enter a valid Item Quantity";
+    } else {
+      $itemQuantity = $input_itemQuantity;
+    }
+
+    $input_itemNumber = trim($_POST["itemNumber"]);
+    if(empty ($input_itemNumber)){
+      $itemNumber_err = "Please enter Purchase Number";
+    } elseif(!ctype_digit($input_itemNumber)){
+      $itemNumber_err = "Please enter a valid Purchase Number";
+    } else {
+      $itemNumber = $input_itemNumber;
+    }
+          
+    date_default_timezone_get();
+    $dateReceived = date('Y-m-d H:i:s', time());
+
+    $input_recipientName = trim($_POST["recipientName"]);
+    if(empty ($input_recipientName)){
+      $recipientName_err = "Please enter Purchase Number";
+    } elseif(!filter_var($input_recipientName, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-Z\s]+$/")))){
+      $recipientName_err = "Please enter a valid Purchase Number";
+    } else {
+      $recipientName = $input_recipientName;
+    }
+          
+    if(empty($purchaseNumber_err) && empty($purchaseNumber_err) && empty($distributorName_err) && empty($itemName_err) && empty($itemNumber_err) && empty($recipientName_err)){
+      $sql = "INSERT INTO sml (dateOrdered, purchaseNumber, distributorName, itemName, itemQuantity, itemNumber, dateReceived, receipientSignature) VALUES (?, ?, ?, ?, ?, ?, ?)";
+      if($stmt = $mysqli->prepare($sql)){
+        $stmt->bind_param("sss", $param_dateOrder, $param_purchaseNum, $param_distName, $param_itemName, $param_itemQuantity, $param_itemNum, $param_dateReceived, $param_recipient);
+                
+        $param_dateOrder = $dateOrdered;
+        $param_purchaseNum = $purchaseNumber;
+        $param_distName = $distributorName;
+        $param_itemName = $itemName;
+        $param_itemQuantity = $itemQuantity;
+        $param_itemNum = $itemNumber;
+        $param_dateReceived = $dateReceived;
+        $param_recipient = $recipientName;
+
+        if($stmt->execute()){
+          header("location: indexLog.php");
+          exit();
+        } else {
+          echo "An error occurred. Please try again.";
+        }
+      }
+    }
+  }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./components/output.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Dashboard</title>
   </head>
   <body class="bg-slate-200">
@@ -41,99 +134,6 @@
       </div>
       <div class="ml-[200px] p-10">
         <h1 class="text-4xl font-semibold">Logs</h1>
-        <?
-        require_once "config.php";
-        //@TODO dateOrdered
-        $purchaseNumber = $distributorName = $itemName = $itemQuantity = $itemNumber = $recipientName = "";
-        $purchaseNumber_err = $distributorName_err = $itemName_err = $itemQuantity_err = $itemNumber_err = $recipientName_err = "";
-
-        date_default_timezone_get();
-        $dateOrdered = date('Y-m-d H:i:s', time());
-
-        if($SERVER["REQUEST METHOD"] == "POST"){
-          $input_purchaseNum = trim($_POST["purchaseNumber"]);
-          if(empty ($input_purchaseNum)){
-            $purchaseNumber_err = "Please enter Purchase Number";
-          } elseif(!ctype_digit($input_purchaseNum)){
-            $purchaseNumber_err = "Please enter a valid Purchase Number";
-          } else {
-            $purchaseNumber = $input_purchaseNum;
-          }
-
-          $input_distName = trim($_POST["distributorName"]);
-          if(empty ($input_distName)){
-            $distributorName_err = "Please enter Distributor Name";
-          } elseif(!filter_var($input_distName, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-Z\s]+$/")))){
-            $distributorName_err = "Please enter a valid name";
-          } else {
-            $distributorName = $input_distName;
-          }
-          
-          $input_itemName = trim($_POST["itemName"]);
-          if(empty ($input_itemName)){
-            $purchaseNumber_err = "Please enter Item Number";
-          } elseif(!filter_var($input_itemName, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-Z\s]+$/")))){
-            $itemName_err = "Please enter a valid Item Number";
-          } else {
-            $itemName = $input_itemName;
-          }
-          
-          $input_itemQuantity = trim($_POST["itemQuantity"]);
-          if(empty ($input_itemQuantity)){
-            $itemQuantity_err = "Please enter Item Quantity";
-          } elseif(!ctype_digit($input_itemQuantity)){
-            $itemQuantity_err = "Please enter a valid Item Quantity";
-          } else {
-            $itemQuantity = $input_itemQuantity;
-          }
-
-          $input_itemNumber = trim($_POST["itemNumber"]);
-          if(empty ($input_itemNumber)){
-            $itemNumber_err = "Please enter Purchase Number";
-          } elseif(!ctype_digit($input_itemNumber)){
-            $itemNumber_err = "Please enter a valid Purchase Number";
-          } else {
-            $itemNumber = $input_itemNumber;
-          }
-          
-          date_default_timezone_get();
-          $dateReceived = date('Y-m-d H:i:s', time());
-
-          $input_recipientName = trim($_POST["recipientName"]);
-          if(empty ($input_recipientName)){
-            $recipientName_err = "Please enter Purchase Number";
-          } elseif(!filter_var($input_recipientName, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-Z\s]+$/")))){
-            $recipientName_err = "Please enter a valid Purchase Number";
-          } else {
-            $recipientName = $input_recipientName;
-          }
-          
-          if(empty($purchaseNumber_err) && empty($purchaseNumber_err) && empty($distributorName_err) && empty($itemName_err) && empty($itemNumber_err) && empty($recipientName_err)){
-            $sql = "INSERT INTO test.sml (dateOrdered, purchaseNumber, distributorName, itemName, itemQuantity, itemNumber, dateReceived, receipientSignature)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)";
-              if($stmt = $mysqli->prepare($sql)){
-                $stmt->bind_param("sss", $param_dateOrder, $param_purchaseNum, $param_distName, $param_itemName, $param_itemQuantity, $param_itemNum, $param_dateReceived, $param_recipient);
-                
-                $param_dateOrder = $dateOrdered;
-                $param_purchaseNum = $purchaseNumber;
-                $param_distName = $distributorName;
-                $param_itemName = $itemName;
-                $param_itemQuantity = $itemQuantity;
-                $param_itemNum = $itemNumber;
-                $param_dateReceived = $dateReceived;
-                $param_recipient = $recipientName;
-
-                if($stmt->execute()){
-                  header("location: indexLog.php");
-                  exit();
-                } else {
-                  echo "Oops! Something went wrong. Please try again.";
-                }
-              }
-          }
-        }
-        ?>
-
         <h2 class="text-3xl">Create a record</h2>
         <h3 class="text-2xl">Fill up the form below.</h3>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
