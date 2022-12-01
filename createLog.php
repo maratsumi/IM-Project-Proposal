@@ -1,13 +1,23 @@
 <?php
   require_once "config.php";
   $purchaseNumber = $distributorName = $itemName = $itemQuantity = $itemNumber = $recipientName = "";
-  $purchaseNumber_err = $distributorName_err = $itemName_err = $itemQuantity_err = $itemNumber_err = $recipientName_err = "";
+  $purchaseNumber_err = $distributorName_err = $itemName_err = $itemQuantity_err = $itemNumber_err = $recipientName_err = $dateOrdered_err = "";
 
   date_default_timezone_get();
-  $dateOrdered = date('Y-m-d');
   $dateReceived = date('Y-m-d');
 
   if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $input_dateOrdered = trim($_POST["dateOrdered"]);
+    if(empty ($input_dateOrdered)){
+      $dateOrdered_err = "Please enter valid Date";
+    } elseif(!filter_var($input_dateOrdered, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/")))){
+      $dateOrdered_err = "Please enter a valid Date";
+    } else {
+      $dateOrderedString = $input_dateOrdered;
+      $dateOrdered = strtotime($dateOrderedString);
+      date("Y-m-d", $dateOrdered);
+    }
+
     $input_purchaseNum = trim($_POST["purchaseNumber"]);
     if(empty ($input_purchaseNum)){
       $purchaseNumber_err = "Please enter Purchase Number";
@@ -137,7 +147,7 @@
         <h3 class="text-2xl">Fill up the form below.</h3>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
           <div class="form-group">
-              <label>Date Ordered</label>
+              <label>Date Ordered (YYYY-MM-DD)</label>
               <input type="text" name="dateOrdered" class="form-control <?php echo (!empty($dateOrdered_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $dateOrdered; ?>">
           </div>
           <div class="form-group">
