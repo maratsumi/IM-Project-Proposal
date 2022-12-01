@@ -44,11 +44,11 @@
         <?
         require_once "config.php";
         //@TODO dateOrdered
-        $dateOrdered = $purchaseNumber = $distributorName = $itemName = $itemQuantity = $itemNumber = $recipientName = "";
+        $purchaseNumber = $distributorName = $itemName = $itemQuantity = $itemNumber = $recipientName = "";
         $purchaseNumber_err = $distributorName_err = $itemName_err = $itemQuantity_err = $itemNumber_err = $recipientName_err = "";
 
         date_default_timezone_get();
-        $dateOrdered = date('m/d/Y H:i:s', time());
+        $dateOrdered = date('Y-m-d H:i:s', time());
 
         if($SERVER["REQUEST METHOD"] == "POST"){
           $input_purchaseNum = trim($_POST["purchaseNumber"]);
@@ -97,7 +97,7 @@
           }
           
           date_default_timezone_get();
-          $dateReceived = date('m/d/Y H:i:s', time());
+          $dateReceived = date('Y-m-d H:i:s', time());
 
           $input_recipientName = trim($_POST["recipientName"]);
           if(empty ($input_recipientName)){
