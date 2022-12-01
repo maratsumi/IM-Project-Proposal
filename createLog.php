@@ -57,9 +57,9 @@
 
     $input_itemNumber = trim($_POST["itemNumber"]);
     if(empty ($input_itemNumber)){
-      $itemNumber_err = "Please enter Purchase Number";
+      $itemNumber_err = "Please enter Item Number";
     } elseif(!ctype_digit($input_itemNumber)){
-      $itemNumber_err = "Please enter a valid Purchase Number";
+      $itemNumber_err = "Please enter a valid Item Number";
     } else {
       $itemNumber = $input_itemNumber;
     }
@@ -67,9 +67,9 @@
 
     $input_recipientName = trim($_POST["recipientName"]);
     if(empty ($input_recipientName)){
-      $recipientName_err = "Please enter Purchase Number";
+      $recipientName_err = "Please enter Recipient Name";
     } elseif(!filter_var($input_recipientName, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-Z\s]+$/")))){
-      $recipientName_err = "Please enter a valid Purchase Number";
+      $recipientName_err = "Please enter a valid Recipient Name";
     } else {
       $recipientName = $input_recipientName;
     }
@@ -77,10 +77,10 @@
     if(empty($dateOrdered_err) && empty($purchaseNumber_err) && empty($distributorName_err) && empty($itemName_err) && empty($itemQuantity_err) && empty($itemNumber_err) && empty($recipientName_err)){
       $sql = "INSERT INTO sml (dateOrdered, purchaseNumber, distributorName, itemName, itemQuantity, itemNumber, dateReceived, receipientSignature) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
       if($stmt = $mysqli->prepare($sql)){
-        $stmt->bind_param("sissiiss", $param_dateOrder, $param_purchaseNum, $param_distName, $param_itemName, $param_itemQuantity, $param_itemNum, $param_dateReceived, $param_recipient);
+        $stmt->bind_param("sissiiss", $param_dateOrder, $param_purchaseNumber, $param_distName, $param_itemName, $param_itemQuantity, $param_itemNum, $param_dateReceived, $param_recipient);
                 
         $param_dateOrder = $dateOrdered;
-        $param_purchaseNum = $purchaseNumber;
+        $param_purchaseNumber = $purchaseNumber;
         $param_distName = $distributorName;
         $param_itemName = $itemName;
         $param_itemQuantity = $itemQuantity;

@@ -48,8 +48,8 @@
                     echo "<tbody";
                     while ($row = $result -> fetch_array()){
                       echo "<tr>";
-                        echo "<td>" . $row['dateOrdered'] . "</td>";
                         echo "<td>" . $row['purchaseNumber'] . "</td>";
+                        echo "<td>" . $row['dateOrdered'] . "</td>";
                         echo "<td>" . $row['distributorName'] . "</td>";
                         echo "<td>" . $row['itemName'] . "</td>";
                         echo "<td>" . $row['itemQuantity'] . "</td>";

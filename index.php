@@ -32,7 +32,7 @@
         <a
           href="indexLog.php"
           class="text-lg block text-slate-200 px-3 py-5 mx-auto"
-          ><img src="./components/notes.png" class="h-10 w-auto mx-auto" />
+          ><img src="./assets/notes.png" class="h-10 w-auto mx-auto" />
           Notes</a
         >
       </div>

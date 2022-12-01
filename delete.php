@@ -5,7 +5,7 @@ if(isset($_POST["purchaseNumber"]) && !empty($_POST["purchaseNumber"])){
     require_once "config.php";
     
     // Prepare a delete statement
-    $sql = "DELETE FROM test.sml WHERE purchaseNumber = ?";
+    $sql = "DELETE FROM sml WHERE purchaseNumber = ?";
     
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
