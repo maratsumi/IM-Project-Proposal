@@ -1,6 +1,6 @@
 <?php
   require_once "config.php";
-  $purchaseNumber = $distributorName = $itemName = $itemQuantity = $itemNumber = $recipientName = $dateOrdered "";
+  $purchaseNumber = $distributorName = $itemName = $itemQuantity = $itemNumber = $recipientName = $dateOrdered = "";
   $purchaseNumber_err = $distributorName_err = $itemName_err = $itemQuantity_err = $itemNumber_err = $recipientName_err = $dateOrdered_err = "";
 
   date_default_timezone_get();
