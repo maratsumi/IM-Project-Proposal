@@ -89,7 +89,6 @@
   }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -140,7 +139,6 @@
           <div class="form-group">
               <label>Date Ordered</label>
               <input type="text" name="dateOrdered" class="form-control <?php echo (!empty($dateOrdered_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $dateOrdered; ?>">
-              <span class="invalid-feedback"><?php echo $dateOrdered_err;?></span>
           </div>
           <div class="form-group">
               <label>Purchase Number</label>
@@ -170,7 +168,6 @@
           <div class="form-group">
               <label>Date Received</label>
               <input type="text" name="dateReceived" class="form-control <?php echo (!empty($dateReceived_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $dateReceived; ?>">
-              <span class="invalid-feedback"><?php echo $dateReceived_err;?></span>
           </div>
           <div class="form-group">
               <label>Recipient Name</label>
