@@ -54,7 +54,7 @@ if(isset($_POST["purchaseNumber"]) && !empty($_POST["purchaseNumber"])){
 </head>
 <body>
     <div class="wrapper">
-        <div class="container mx-auto sm:px-4 max-w-full mx-auto sm:px-4">
+        <div class="container mx-auto sm:px-4 max-w-full">
             <div class="grid-row: auto;">
                 <div class="col-span-12">
                     <h2 class="mt-5 mb-3">Delete Record</h2>
