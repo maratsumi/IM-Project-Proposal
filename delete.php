@@ -33,7 +33,7 @@ if(isset($_POST["purchaseNumber"]) && !empty($_POST["purchaseNumber"])){
     // Check existence of purchaseNumber parameter
     if(empty(trim($_GET["purchaseNumber"]))){
         // URL doesn't contain purchaseNumber parameter. Redirect to error page
-        header("location: error.php");
+        header("location: ErrorPage.html");
         exit();
     }
 }
