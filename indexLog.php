@@ -22,8 +22,61 @@
           <h1 class="text-4xl font-semibold">November 2022</h1>
         </div>
         <div class="ml-60">
-          <table
-            class="table-auto border-separate border-spacing-2 border border-slate-400"
+            <?php
+            require_once "config.php";
+
+            $sql = "SELECT * FROM testsml";
+            if($result = mysqli_query($link, $sql)){
+                if(mysqli_num_rows($result) > 0){
+                  echo '<table class="table-auto border-separate border-spacing-2 border border-slate-400">';
+                    echo "<thead>";
+                      echo "<tr>";
+                        echo "<th>Date Ordered</th>";
+                        echo "<th>Purchase Order </th>";
+                        echo "<th>Distributor</th>";
+                        echo "<th>Item Name</th>";
+                        echo "<th>Item Quantity</th>";
+                        echo "<th>Item Number #</th>";
+                        echo "<th>Date Received</th>";
+                        echo "<th>Receipient Signature</th>";
+                      echo "</tr>";
+                    echo "</thead>";
+                    echo "<tbody";
+                    while ($row = mysqli_fetch_array($result)){
+                      echo "<tr>";
+                        echo "<td>" . $row['dateOrdered'] . "</td>";
+                        echo "<td>" . $row['purchaseNumber'] . "</td>";
+                        echo "<td>" . $row['distributorName'] . "</td>";
+                        echo "<td>" . $row['itemName'] . "</td>";
+                        echo "<td>" . $row['itemQuantity'] . "</td>";
+                        echo "<td>" . $row['itemNumber'] . "</td>";
+                        echo "<td>" . $row['dateReceived '] . "</td>";
+                        echo "<td>" . $row['receipientSignature '] . "</td>";
+                        echo "<td>";
+                          echo '<a href="update.php?id='. $row['purchaseNumber'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
+                          echo '<a href="delete.php?id='. $row['purchaseNumber'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                        echo "</td>";
+                      echo "</tr>";
+                    }
+                    echo "</tbody>";
+                  echo "</table>";
+                  mysqli_free_result($result);
+              } else{
+                  echo '<div class="alert alert-danger"><em>No records were found.</em></div>'
+              }
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            mysqli_close($link);
+            ?>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<!--
+          <table class="table-auto border-separate border-spacing-2 border border-slate-400"
           >
             <thead>
               <tr>
@@ -65,3 +118,4 @@
     </div>
   </body>
 </html>
+          -->
