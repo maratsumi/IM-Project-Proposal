@@ -13,9 +13,9 @@
         class="h-full w-[200px] fixed z-10 top-0 left-0 bg-slate-800 overflow-x-hidden text-center shadow-md"
       >
       <h1 class="text-5xl text-slate-100 pb-10 p-5">SML</h1>
-      <a href="index.html" class="text-lg block text-slate-200 px-3 py-5 mx-auto"><img src="./assets/dash.png" class="h-10 w-auto mx-auto">Dashboard</a>
+      <a href="index.php" class="text-lg block text-slate-200 px-3 py-5 mx-auto"><img src="./assets/dash.png" class="h-10 w-auto mx-auto">Dashboard</a>
       <a href="indexLogsMain.html" class="text-lg block text-slate-200 px-3 py-5 mx-auto"><img src="./assets/logs.png" class="h-10 w-auto mx-auto">Logs</a>
-      <a href="indexLog.html" class="text-lg block text-slate-800 bg-slate-200 px-3 py-5 mx-auto"><img src="./assets/notes_d.png" class="h-10 w-auto mx-auto"> Notes</a>
+      <a href="indexLog.php" class="text-lg block text-slate-800 bg-slate-200 px-3 py-5 mx-auto"><img src="./assets/notes_d.png" class="h-10 w-auto mx-auto"> Notes</a>
       </div>
       <div class="h-full w-full fixed ml-11">
         <div class="ml-[200px] p-10 flex">
@@ -24,10 +24,11 @@
         <div class="ml-60">
           <a href="createLog.php" class="text-lg bg-blue-400 p-5 text-center">Add Record</a>
             <?php
+
             require_once "config.php";
 
             $sql = "SELECT * FROM sml";
-            if($result = mysqli->query($sql)){
+            if($result = $mysqli->query($sql)){
                 if($result -> num_rows > 0){
                   echo '<table class="table-auto border-separate border-spacing-2 border border-slate-400">';
                     echo "<thead>";
@@ -51,8 +52,8 @@
                         echo "<td>" . $row['itemName'] . "</td>";
                         echo "<td>" . $row['itemQuantity'] . "</td>";
                         echo "<td>" . $row['itemNumber'] . "</td>";
-                        echo "<td>" . $row['dateReceived '] . "</td>";
-                        echo "<td>" . $row['receipientSignature '] . "</td>";
+                        echo "<td>" . $row['dateReceived'] . "</td>";
+                        echo "<td>" . $row['receipientSignature'] . "</td>";
                         echo "<td>";
                           echo '<a href="update.php?id='. $row['purchaseNumber'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
                           echo '<a href="delete.php?id='. $row['purchaseNumber'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';

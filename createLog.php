@@ -4,9 +4,10 @@
   $purchaseNumber_err = $distributorName_err = $itemName_err = $itemQuantity_err = $itemNumber_err = $recipientName_err = "";
 
   date_default_timezone_get();
-  $dateOrdered = date('Y-m-d H:i:s', time());
+  $dateOrdered = date('Y-m-d');
+  $dateReceived = date('Y-m-d');
 
-  if($SERVER["REQUEST METHOD"] == "POST"){
+  if($_SERVER["REQUEST_METHOD"] == "POST"){
     $input_purchaseNum = trim($_POST["purchaseNumber"]);
     if(empty ($input_purchaseNum)){
       $purchaseNumber_err = "Please enter Purchase Number";
@@ -27,9 +28,9 @@
           
     $input_itemName = trim($_POST["itemName"]);
     if(empty ($input_itemName)){
-      $purchaseNumber_err = "Please enter Item Number";
+      $itemName_err = "Please enter Item Name";
     } elseif(!filter_var($input_itemName, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-Z\s]+$/")))){
-      $itemName_err = "Please enter a valid Item Number";
+      $itemName_err = "Please enter a valid Item Name";
     } else {
       $itemName = $input_itemName;
     }
@@ -52,8 +53,7 @@
       $itemNumber = $input_itemNumber;
     }
           
-    date_default_timezone_get();
-    $dateReceived = date('Y-m-d H:i:s', time());
+    
 
     $input_recipientName = trim($_POST["recipientName"]);
     if(empty ($input_recipientName)){
@@ -65,9 +65,9 @@
     }
           
     if(empty($purchaseNumber_err) && empty($purchaseNumber_err) && empty($distributorName_err) && empty($itemName_err) && empty($itemNumber_err) && empty($recipientName_err)){
-      $sql = "INSERT INTO sml (dateOrdered, purchaseNumber, distributorName, itemName, itemQuantity, itemNumber, dateReceived, receipientSignature) VALUES (?, ?, ?, ?, ?, ?, ?)";
+      $sql = "INSERT INTO sml (dateOrdered, purchaseNumber, distributorName, itemName, itemQuantity, itemNumber, dateReceived, receipientSignature) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
       if($stmt = $mysqli->prepare($sql)){
-        $stmt->bind_param("sss", $param_dateOrder, $param_purchaseNum, $param_distName, $param_itemName, $param_itemQuantity, $param_itemNum, $param_dateReceived, $param_recipient);
+        $stmt->bind_param("sissiiss", $param_dateOrder, $param_purchaseNum, $param_distName, $param_itemName, $param_itemQuantity, $param_itemNum, $param_dateReceived, $param_recipient);
                 
         $param_dateOrder = $dateOrdered;
         $param_purchaseNum = $purchaseNumber;
@@ -125,7 +125,7 @@
         >
 
         <a
-          href="indexLog.html"
+          href="indexLog.php"
           class="text-lg block text-slate-200 px-3 py-5 mx-auto"
           ><img src="./assets/notes.png" class="h-10 w-auto mx-auto" />
           Notes</a
