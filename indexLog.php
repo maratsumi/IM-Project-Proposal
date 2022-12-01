@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./components/output.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Logs</title>
   </head>
   <body class="bg-slate-200">
@@ -23,8 +25,6 @@
         </div>
         <div class="ml-60">
           <a href="createLog.php" class="text-lg bg-blue-400 p-5 text-center">Add Record</a>
-          <a href="createLog.php" class="text-lg bg-blue-400 p-5 text-center">Edit Record</a>
-          <a href="createLog.php" class="text-lg bg-blue-400 p-5 text-center">Delete Record</a>
             <?php
 
             require_once "config.php";
@@ -56,6 +56,9 @@
                         echo "<td>" . $row['itemNumber'] . "</td>";
                         echo "<td>" . $row['dateReceived'] . "</td>";
                         echo "<td>" . $row['receipientSignature'] . "</td>";
+                        echo "<td>";
+                          echo '<a href="update.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
+                          echo '<a href="delete.php?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                         echo "</td>";
                       echo "</tr>";
                     }
