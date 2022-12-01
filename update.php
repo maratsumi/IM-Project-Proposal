@@ -70,9 +70,9 @@ if(isset($_POST["purchaseNumber"]) && !empty ($_POST["purchaseNumber"])){
 
     if (empty($distributorName_err) && empty($itemName_err) && empty($itemQuantity_err) && empty($itemNumber_err) && empty($dateReceived_err) && empty($recipientSignature_err)){
 
-        $sql = "UPDATE test.sml SET distrubutorName=?, itemName=?, itemQuantity=?, itemNumber=?, dateReceived=?, reciepientSignature=? WHERE purchasenumber=?"
+        $sql = "UPDATE test.sml SET distrubutorName=?, itemName=?, itemQuantity=?, itemNumber=?, dateReceived=?, reciepientSignature=? WHERE purchasenumber=?";
 
-        if($stmt = $mysqli->pepare($sql)){
+        if ($stmt = $mysqli->prepare($sql)){
             $stmt->bind_param("sssi", $param_distrbutorName, $param_itemName, $param_itemQuantity, $param_itemNumber, $param_dateReceived, $param_reciepientSignature, $param_purchaseNumber);
 
             $param_distrbutorName = $distributorName;
