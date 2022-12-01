@@ -41,7 +41,8 @@
       </div>
       <div class="ml-[200px] p-10">
         <h1 class="text-4xl font-semibold">Logs</h1>
-        <?
+        
+        <?php
         require_once "config.php";
         //@TODO dateOrdered
         $purchaseNumber = $distributorName = $itemName = $itemQuantity = $itemNumber = $recipientName = "";

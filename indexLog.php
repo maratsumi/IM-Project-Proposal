@@ -27,8 +27,8 @@
             require_once "config.php";
 
             $sql = "SELECT * FROM testsml";
-            if($result = mysqli_query($link, $sql)){
-                if(mysqli_num_rows($result) > 0){
+            if($result = mysqli->query($sql)){
+                if($result -> num_rows > 0){
                   echo '<table class="table-auto border-separate border-spacing-2 border border-slate-400">';
                     echo "<thead>";
                       echo "<tr>";
@@ -43,7 +43,7 @@
                       echo "</tr>";
                     echo "</thead>";
                     echo "<tbody";
-                    while ($row = mysqli_fetch_array($result)){
+                    while ($row = $result -> fetch_array()){
                       echo "<tr>";
                         echo "<td>" . $row['dateOrdered'] . "</td>";
                         echo "<td>" . $row['purchaseNumber'] . "</td>";
@@ -61,7 +61,7 @@
                     }
                     echo "</tbody>";
                   echo "</table>";
-                  mysqli_free_result($result);
+                  $result->free();
               } else{
                   echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
               }
@@ -69,7 +69,7 @@
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
-            mysqli_close($link);
+            $mysqli->close();
             ?>
         </div>
       </div>
