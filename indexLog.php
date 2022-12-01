@@ -26,7 +26,7 @@
             <?php
             require_once "config.php";
 
-            $sql = "SELECT * FROM testsml";
+            $sql = "SELECT * FROM sml";
             if($result = mysqli->query($sql)){
                 if($result -> num_rows > 0){
                   echo '<table class="table-auto border-separate border-spacing-2 border border-slate-400">';
