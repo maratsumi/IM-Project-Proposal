@@ -1,7 +1,4 @@
 <?php
-// @TODO
-// Change DB_USERNAME to corresponding username
-// Change DB_NAME to corresponding name
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
