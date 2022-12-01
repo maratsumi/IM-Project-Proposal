@@ -1,6 +1,6 @@
 <?php
   require_once "config.php";
-  $purchaseNumber = $distributorName = $itemName = $itemQuantity = $itemNumber = $recipientName = "";
+  $purchaseNumber = $distributorName = $itemName = $itemQuantity = $itemNumber = $recipientName = $dateOrdered "";
   $purchaseNumber_err = $distributorName_err = $itemName_err = $itemQuantity_err = $itemNumber_err = $recipientName_err = $dateOrdered_err = "";
 
   date_default_timezone_get();
@@ -8,6 +8,7 @@
 
   if($_SERVER["REQUEST_METHOD"] == "POST"){
     $input_dateOrdered = trim($_POST["dateOrdered"]);
+
     if(empty ($input_dateOrdered)){
       $dateOrdered_err = "Please enter valid Date";
     } elseif(!filter_var($input_dateOrdered, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/")))){
@@ -63,7 +64,6 @@
       $itemNumber = $input_itemNumber;
     }
           
-    
 
     $input_recipientName = trim($_POST["recipientName"]);
     if(empty ($input_recipientName)){
@@ -74,7 +74,7 @@
       $recipientName = $input_recipientName;
     }
           
-    if(empty($purchaseNumber_err) && empty($purchaseNumber_err) && empty($distributorName_err) && empty($itemName_err) && empty($itemNumber_err) && empty($recipientName_err)){
+    if(empty($dateOrdered_err) && empty($purchaseNumber_err) && empty($distributorName_err) && empty($itemName_err) && empty($itemQuantity_err) && empty($itemNumber_err) && empty($recipientName_err)){
       $sql = "INSERT INTO sml (dateOrdered, purchaseNumber, distributorName, itemName, itemQuantity, itemNumber, dateReceived, receipientSignature) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
       if($stmt = $mysqli->prepare($sql)){
         $stmt->bind_param("sissiiss", $param_dateOrder, $param_purchaseNum, $param_distName, $param_itemName, $param_itemQuantity, $param_itemNum, $param_dateReceived, $param_recipient);
@@ -145,7 +145,7 @@
         <h1 class="text-4xl font-semibold">Logs</h1>
         <h2 class="text-3xl">Create a record</h2>
         <h3 class="text-2xl">Fill up the form below.</h3>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
           <div class="form-group">
               <label>Date Ordered (YYYY-MM-DD)</label>
               <input type="text" name="dateOrdered" class="form-control <?php echo (!empty($dateOrdered_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $dateOrdered; ?>">

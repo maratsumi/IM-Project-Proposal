@@ -1,12 +1,23 @@
 <?php
 require_once "config.php";
 
-$purchaseNumber = $distributorName = $itemName = $itemQuantity = $itemNumber = $dateReceived = $recipientSignature = "";
+$purchaseNumber = $distributorName = $itemName = $itemQuantity = $itemNumber = $recipientName = $dateOrdered = "";
 
-$purchaseNumber_err = $distributorName_err = $itemName_err = $itemQuantity_err = $itemNumber_err = $dateReceived_err = $recipientSignature_err = "";
+$purchaseNumber_err = $distributorName_err = $itemName_err = $itemQuantity_err = $itemNumber_err = $recipientName_err = $dateOrdered_err = "";
 
 if(isset($_POST["purchaseNumber"]) && !empty ($_POST["purchaseNumber"])){
-    $id = $_POST["purchaseNumber"];
+    $purchaseNumber = $_POST["purchaseNumber"];
+    $input_dateOrdered = trim($_POST["dateOrdered"]);
+    
+    if(empty ($input_dateOrdered)){
+        $dateOrdered_err = "Please enter valid Date";
+      } elseif(!filter_var($input_dateOrdered, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/")))){
+        $dateOrdered_err = "Please enter a valid Date";
+      } else {
+        $dateOrderedString = $input_dateOrdered;
+        $dateOrdered = strtotime($dateOrderedString);
+        date("Y-m-d", $dateOrdered);
+      }
 
     $input_distributorName = trim($_POST["distributorName"]);
     if(empty($input_distributorName)){
@@ -68,13 +79,14 @@ if(isset($_POST["purchaseNumber"]) && !empty ($_POST["purchaseNumber"])){
         $recipientSignature = $input_recipientSignature;
     }
 
-    if (empty($distributorName_err) && empty($itemName_err) && empty($itemQuantity_err) && empty($itemNumber_err) && empty($dateReceived_err) && empty($recipientSignature_err)){
+    if (empty($dateOrdered_err) && empty($purchaseNumber_err) && empty($distributorName_err) && empty($itemName_err) && empty($itemQuantity_err) && empty($itemNumber_err) && empty($dateReceived_err) && empty($recipientSignature_err)){
 
         $sql = "UPDATE test.sml SET distrubutorName=?, itemName=?, itemQuantity=?, itemNumber=?, dateReceived=?, reciepientSignature=? WHERE purchasenumber=?";
 
         if ($stmt = $mysqli->prepare($sql)){
-            $stmt->bind_param("sssi", $param_distrbutorName, $param_itemName, $param_itemQuantity, $param_itemNumber, $param_dateReceived, $param_reciepientSignature, $param_purchaseNumber);
+            $stmt->bind_param("sssi", $param_dateOrdered, $param_distrbutorName, $param_itemName, $param_itemQuantity, $param_itemNumber, $param_dateReceived, $param_reciepientSignature, $param_purchaseNumber);
 
+            $param_dateOrdered = $dateOrdered;
             $param_distrbutorName = $distributorName;
             $param_itemName = $itemName;
             $param_itemQuantity = $itemQuantity;
@@ -84,7 +96,7 @@ if(isset($_POST["purchaseNumber"]) && !empty ($_POST["purchaseNumber"])){
             $param_purchaseNumber = $purchaseNumber;
 
             if($stmt->execute()){
-                header("location: index.php");
+                header("location: indexLog.php");
                 exit();
             } else{
                 echo "Something went wrong. Please try again later.";
@@ -121,7 +133,7 @@ if(isset($_POST["purchaseNumber"]) && !empty ($_POST["purchaseNumber"])){
                     $dateReceived = $row["dateReceived"];
                     $recipientSignature = $row["recipientSignature"];
                 } else{
-                    header("location: error.php");
+                    header("location: ErrorPage.html");
                     exit();
                 }
             } else{
@@ -134,7 +146,7 @@ if(isset($_POST["purchaseNumber"]) && !empty ($_POST["purchaseNumber"])){
         $mysqli->close();
     } else{
 
-        header("location: error.php");
+        header("location: ErrorPage.html");
         exit();
     }
 }
