@@ -23,6 +23,8 @@
         </div>
         <div class="ml-60">
           <a href="createLog.php" class="text-lg bg-blue-400 p-5 text-center">Add Record</a>
+          <a href="createLog.php" class="text-lg bg-blue-400 p-5 text-center">Edit Record</a>
+          <a href="createLog.php" class="text-lg bg-blue-400 p-5 text-center">Delete Record</a>
             <?php
 
             require_once "config.php";
@@ -54,9 +56,6 @@
                         echo "<td>" . $row['itemNumber'] . "</td>";
                         echo "<td>" . $row['dateReceived'] . "</td>";
                         echo "<td>" . $row['receipientSignature'] . "</td>";
-                        echo "<td>";
-                          echo '<a href="update.php?id='. $row['purchaseNumber'] .'>Update Records</a>';
-                          echo '<a href="delete.php?id='. $row['purchaseNumber'] .'>Delete Records</a>';
                         echo "</td>";
                       echo "</tr>";
                     }
