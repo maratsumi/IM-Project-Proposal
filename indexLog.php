@@ -35,8 +35,8 @@
                   echo '<table class="table-auto border-separate border-spacing-2 border border-slate-400">';
                     echo "<thead>";
                       echo "<tr>";
-                        echo "<th>Date Ordered</th>";
-                        echo "<th>Purchase Order </th>";
+                        echo "<th>Purchase Order</th>";
+                        echo "<th>Date Ordered </th>";
                         echo "<th>Distributor</th>";
                         echo "<th>Item Name</th>";
                         echo "<th>Item Quantity</th>";
@@ -57,8 +57,8 @@
                         echo "<td>" . $row['dateReceived'] . "</td>";
                         echo "<td>" . $row['receipientSignature'] . "</td>";
                         echo "<td>";
-                          echo '<a href="update.php?id='. $row['purchaseNumber'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
-                          echo '<a href="delete.php?id='. $row['purchaseNumber'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                          echo '<a href="update.php?purchaseNumber='. $row['purchaseNumber'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
+                          echo '<a href="delete.php?purchaseNumber='. $row['purchaseNumber'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                         echo "</td>";
                       echo "</tr>";
                     }
