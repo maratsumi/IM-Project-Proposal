@@ -4,6 +4,10 @@
   $distributorName = $itemName = $itemQuantity = $itemNumber = $receipientSignature = $dateOrdered = "";
   $distributorName_err = $itemName_err = $itemQuantity_err = $itemNumber_err = $receipientSignature_err = $dateOrdered_err = "";
 
+  
+  $distributorName = $itemName = $itemQuantity = $itemNumber = $recipientSignature = $dateOrdered = "";
+  $distributorName_err = $itemName_err = $itemQuantity_err = $itemNumber_err = $recipientSignature_err = $dateOrdered_err = "";
+
   date_default_timezone_get();
   $dateReceived = date('Y-m-d');
 
@@ -20,6 +24,9 @@
       // date("Y-m-d H:i:s", $dateOrdered);
       $time = strtotime($input_dateOrdered);
       $dateOrdered = date('Y-m-d H:i:s', $time);
+      $dateOrderedString = $input_dateOrdered;
+      $dateOrdered = strtotime($dateOrderedString);
+      date("Y-m-d H:i:s", $dateOrdered);
     }
 
     $input_distName = trim($_POST["distributorName"]);
