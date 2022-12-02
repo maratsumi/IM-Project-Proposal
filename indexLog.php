@@ -26,7 +26,7 @@
         <div class="ml-[200px] pb-2 pl-5 flex">
           <a href="createLog.php" class="text-lg bg-blue-400 p-2 text-center rounded-[24px] px-4 text-white">Add Record</a>
         </div>
-        <div class="ml-60 object-left-top">
+        <div class="ml-60">
             <?php
 
             require_once "config.php";
