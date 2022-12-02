@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         <h1 class="text-5xl text-slate-100 pb-10 p-5">SML</h1>
         <a
           href="index.php"
-          class="text-lg block text-slate-800 bg-slate-200 px-3 py-5 mx-auto"
+          class="text-lg block text-slate-200  px-3 py-5 mx-auto"
           ><img
             src="./assets/dash.png"
             class="h-10 w-auto mx-auto"
@@ -162,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 
         <a
           href="indexLogsMain.html"
-          class="text-lg block text-slate-200 px-3 py-5 mx-auto"
+          class="text-lg block text-slate-800 bg-slate-200 px-3 py-5 mx-auto"
           ><img
             src="./assets/logs_d.png"
             class="h-10 w-auto mx-auto"
