@@ -112,7 +112,7 @@
         <a href="indexLogsMain.html" class="text-lg block text-slate-800 bg-slate-200 px-3 py-5 mx-auto"><img src="./assets/logs_d.png" class="h-10 w-auto mx-auto"/>Logs</a>
 
         <a href="indexLog.php" class="text-lg block text-slate-200 px-3 py-5 mx-auto"><img src="./assets/notes.png" class="h-10 w-auto mx-auto"/>Notes</a>
-        
+      </div>
       <div class="ml-[200px] p-10">
         <h1 class="text-4xl font-semibold">Logs</h1>
         <h2 class="text-3xl">Create a record</h2>
