@@ -1,7 +1,8 @@
 <?php
   require_once "config.php";
-  $purchaseNumber = $distributorName = $itemName = $itemQuantity = $itemNumber = $recipientName = $dateOrdered = "";
-  $purchaseNumber_err = $distributorName_err = $itemName_err = $itemQuantity_err = $itemNumber_err = $recipientName_err = $dateOrdered_err = "";
+  
+  $distributorName = $itemName = $itemQuantity = $itemNumber = $receipientSignature = $dateOrdered = "";
+  $distributorName_err = $itemName_err = $itemQuantity_err = $itemNumber_err = $receipientSignature_err = $dateOrdered_err = "";
 
   date_default_timezone_get();
   $dateReceived = date('Y-m-d');
@@ -11,21 +12,14 @@
 
     if(empty ($input_dateOrdered)){
       $dateOrdered_err = "Please enter valid Date";
-    } elseif(!filter_var($input_dateOrdered, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/")))){
+    } elseif(!filter_var($input_dateOrdered, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(((\d{4})(-)(0[13578]|10|12)(-)(0[1-9]|[12][0-9]|3[01]))|((\d{4})(-)(0[469]|1‌​1)(-)([0][1-9]|[12][0-9]|30))|((\d{4})(-)(02)(-)(0[1-9]|1[0-9]|2[0-8]))|(([02468]‌​[048]00)(-)(02)(-)(29))|(([13579][26]00)(-)(02)(-)(29))|(([0-9][0-9][0][48])(-)(0‌​2)(-)(29))|(([0-9][0-9][2468][048])(-)(02)(-)(29))|(([0-9][0-9][13579][26])(-)(02‌​)(-)(29)))(\s([0-1][0-9]|2[0-4]):([0-5][0-9]):([0-5][0-9]))$/")))){
       $dateOrdered_err = "Please enter a valid Date";
     } else {
-      $dateOrderedString = $input_dateOrdered;
-      $dateOrdered = strtotime($dateOrderedString);
-      date("Y-m-d", $dateOrdered);
-    }
-
-    $input_purchaseNum = trim($_POST["purchaseNumber"]);
-    if(empty ($input_purchaseNum)){
-      $purchaseNumber_err = "Please enter Purchase Number";
-    } elseif(!ctype_digit($input_purchaseNum)){
-      $purchaseNumber_err = "Please enter a valid Purchase Number";
-    } else {
-      $purchaseNumber = $input_purchaseNum;
+      // $dateOrderedString = $input_dateOrdered;
+      // $dateOrdered = strtotime($dateOrderedString);
+      // date("Y-m-d H:i:s", $dateOrdered);
+      $time = strtotime($input_dateOrdered);
+      $dateOrdered = date('Y-m-d H:i:s', $time);
     }
 
     $input_distName = trim($_POST["distributorName"]);
@@ -65,28 +59,27 @@
     }
           
 
-    $input_recipientName = trim($_POST["recipientName"]);
-    if(empty ($input_recipientName)){
-      $recipientName_err = "Please enter Recipient Name";
-    } elseif(!filter_var($input_recipientName, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-Z\s]+$/")))){
-      $recipientName_err = "Please enter a valid Recipient Name";
+    $input_receipientSignature = trim($_POST["receipientSignature"]);
+    if(empty ($input_receipientSignature)){
+      $receipientSignature_err = "Please enter Recipient Name";
+    } elseif(!filter_var($input_receipientSignature, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-Z\s]+$/")))){
+      $receipientSignature_err = "Please enter a valid Recipient Name";
     } else {
-      $recipientName = $input_recipientName;
+      $receipientSignature = $input_receipientSignature;
     }
           
-    if(empty($dateOrdered_err) && empty($purchaseNumber_err) && empty($distributorName_err) && empty($itemName_err) && empty($itemQuantity_err) && empty($itemNumber_err) && empty($recipientName_err)){
-      $sql = "INSERT INTO sml (dateOrdered, purchaseNumber, distributorName, itemName, itemQuantity, itemNumber, dateReceived, receipientSignature) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    if(empty($dateOrdered_err) && empty($distributorName_err) && empty($itemName_err) && empty($itemQuantity_err) && empty($itemNumber_err) && empty($receipientSignature_err)){
+      $sql = "INSERT INTO sml (dateOrdered, distributorName, itemName, itemQuantity, itemNumber, dateReceived, receipientSignature) VALUES (?, ?, ?, ?, ?, ?, ?)";
       if($stmt = $mysqli->prepare($sql)){
-        $stmt->bind_param("sissiiss", $param_dateOrder, $param_purchaseNumber, $param_distName, $param_itemName, $param_itemQuantity, $param_itemNum, $param_dateReceived, $param_recipient);
+        $stmt->bind_param("sssiiss", $param_dateOrder, $param_distName, $param_itemName, $param_itemQuantity, $param_itemNum, $param_dateReceived, $param_recipient);
                 
         $param_dateOrder = $dateOrdered;
-        $param_purchaseNumber = $purchaseNumber;
         $param_distName = $distributorName;
         $param_itemName = $itemName;
         $param_itemQuantity = $itemQuantity;
         $param_itemNum = $itemNumber;
         $param_dateReceived = $dateReceived;
-        $param_recipient = $recipientName;
+        $param_recipient = $receipientSignature;
 
         if($stmt->execute()){
           header("location: indexLog.php");
@@ -96,6 +89,7 @@
         }
       }
     }
+  $mysqli->close();
   }
 ?>
 
@@ -145,15 +139,10 @@
         <h1 class="text-4xl font-semibold">Logs</h1>
         <h2 class="text-3xl">Create a record</h2>
         <h3 class="text-2xl">Fill up the form below.</h3>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+        <form method="post">
           <div class="form-group">
-              <label>Date Ordered (YYYY-MM-DD)</label>
+              <label>Date Ordered (YYYY-MM-DD H:M:S)</label>
               <input type="text" name="dateOrdered" class="form-control <?php echo (!empty($dateOrdered_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $dateOrdered; ?>">
-          </div>
-          <div class="form-group">
-              <label>Purchase Number</label>
-              <input type="text" name="purchaseNumber" class="form-control <?php echo (!empty($purchaseNumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $purchaseNumber; ?>">
-              <span class="invalid-feedback"><?php echo $purchaseNumber_err;?></span>
           </div>
           <div class="form-group">
               <label>Distributor Name</label>
@@ -181,10 +170,10 @@
           </div>
           <div class="form-group">
               <label>Recipient Name</label>
-              <input type="text" name="recipientName" class="form-control <?php echo (!empty($recipientName_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $recipientName; ?>">
-              <span class="invalid-feedback"><?php echo $recipientName_err;?></span>
+              <input type="text" name="receipientSignature" class="form-control <?php echo (!empty($receipientSignature_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $receipientSignature; ?>">
+              <span class="invalid-feedback"><?php echo $receipientSignature_err;?></span>
           </div>
-          <input type="submit" class="btn btn-primary" value="Submit">
+          <input type="submit" class="btn btn-primary bg-blue-400" value="Submit">
           <a href="indexLog.php" class="btn btn-secondary ml-2">Cancel</a>
         </form>
       </div>
