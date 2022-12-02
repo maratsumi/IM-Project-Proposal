@@ -23,7 +23,7 @@
         <div class="ml-[200px] p-10 flex">
           <h1 class="text-4xl font-semibold">November 2022</h1>
         </div>
-        <div class="ml-60">
+        <div class="ml-60 relative">
           <a href="createLog.php" class="text-lg bg-blue-400 p-5 text-center">Add Record</a>
             <?php
 

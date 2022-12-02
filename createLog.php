@@ -107,31 +107,12 @@
         class="h-full w-[200px] fixed z-10 top-0 left-0 bg-slate-800 overflow-x-hidden text-center shadow-md"
       >
         <h1 class="text-5xl text-slate-100 pb-10 p-5">SML</h1>
-        <a
-          href="index.html"
-          class="text-lg block text-slate-800 bg-slate-200 px-3 py-5 mx-auto"
-          ><img
-            src="./assets/dash_d.png"
-            class="h-10 w-auto mx-auto"
-          />Dashboard</a
-        >
+        <a href="index.php" class="text-lg block text-slate-800 bg-slate-200 px-3 py-5 mx-auto"><img src="./assets/dash.png" class="h-10 w-auto mx-auto"/>Dashboard</a>
 
-        <a
-          href="indexLogsMain.html"
-          class="text-lg block text-slate-200 px-3 py-5 mx-auto"
-          ><img
-            src="./assets/logs.png"
-            class="h-10 w-auto mx-auto"
-          />Logs</a
-        >
+        <a href="indexLogsMain.html" class="text-lg block text-slate-200 px-3 py-5 mx-auto"><img src="./assets/logs_d.png" class="h-10 w-auto mx-auto"/>Logs</a>
 
-        <a
-          href="indexLog.php"
-          class="text-lg block text-slate-200 px-3 py-5 mx-auto"
-          ><img src="./assets/notes.png" class="h-10 w-auto mx-auto" />
-          Notes</a
-        >
-      </div>
+        <a href="indexLog.php" class="text-lg block text-slate-200 px-3 py-5 mx-auto"><img src="./assets/notes.png" class="h-10 w-auto mx-auto"/>Notes</a>
+        
       <div class="ml-[200px] p-10">
         <h1 class="text-4xl font-semibold">Logs</h1>
         <h2 class="text-3xl">Create a record</h2>
