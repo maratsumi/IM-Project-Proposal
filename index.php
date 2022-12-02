@@ -28,13 +28,7 @@
           class="text-lg block text-slate-200 px-3 py-5 mx-auto"
           ><img src="./assets/logs.png" class="h-10 w-auto mx-auto" />Logs</a
         >
-
-        <a
-          href="indexLog.php"
-          class="text-lg block text-slate-200 px-3 py-5 mx-auto"
-          ><img src="./assets/notes.png" class="h-10 w-auto mx-auto" />
-          Notes</a
-        >
+        
       </div>
       <div class="ml-[200px] p-10">
         <h1 class="text-4xl font-semibold">Dashboard</h1>
