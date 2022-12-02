@@ -20,11 +20,13 @@
       <a href="indexLog.php" class="text-lg block text-slate-200 px-3 py-5 mx-auto"><img src="./assets/notes.png" class="h-10 w-auto mx-auto"> Notes</a>
       </div>
       <div class="h-full w-full fixed ml-11">
-        <div class="ml-[200px] p-10 flex">
+        <div class="ml-[200px] pt-5 pb-2 pl-5 flex">
           <h1 class="text-4xl font-semibold">November 2022</h1>
         </div>
+        <div class="ml-[200px] pb-2 pl-5 flex">
+          <a href="createLog.php" class="text-lg bg-blue-400 p-2 text-center rounded-[24px] px-4 text-white">Add Record</a>
+        </div>
         <div class="ml-60 object-left-top">
-          <a href="createLog.php" class="text-lg bg-blue-400 p-5 text-center">Add Record</a>
             <?php
 
             require_once "config.php";
