@@ -164,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
       </div>
       <div class="ml-[200px] p-10">
         <h1 class="text-4xl font-semibold">Logs</h1>
-        <h2 class="text-3xl">Create a record</h2>
+        <h2 class="text-3xl">Update a record</h2>
         <h3 class="text-2xl">Fill up the form below.</h3>
         <form method="post">
             <input type="hidden" value="<?php echo $purchaseNumber; ?>">
