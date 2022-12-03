@@ -99,7 +99,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./components/output.css" />
-    <title>Dashboard</title>
+    <title>Logs</title>
   </head>
   <body class="bg-slate-200">
     <div class="w-full h-full flex">
@@ -107,8 +107,6 @@
         class="h-full w-[200px] fixed z-10 top-0 left-0 bg-slate-800 overflow-x-hidden text-center shadow-md"
       >
         <h1 class="text-5xl text-slate-100 pb-10 p-5">SML</h1>
-        <a href="index.php" class="text-lg block text-slate-200 px-3 py-5 mx-auto"><img src="./assets/dash.png" class="h-10 w-auto mx-auto"/>Dashboard</a>
-
         <a href="indexLogsMain.html" class="text-lg block text-slate-800 bg-slate-200 px-3 py-5 mx-auto"><img src="./assets/logs_d.png" class="h-10 w-auto mx-auto"/>Logs</a>
       </div>
       <div class="ml-[200px] p-10">
